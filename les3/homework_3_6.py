@@ -7,11 +7,15 @@
 def int_func(word):
     """
     Преобразует первую букву слова в заглавную
-    :param word: str str
-    :return: Str Str
+    :param word: str
+    :return: Str
     """
-    return word.title()
+    # return word.title() не используем!
+    word_list = list(word)
+    word_list[0] = chr(ord(word_list[0]) - 32)
+    return ''.join(word_list)
 
 
-text = input('Введите текст: ')
-print(int_func(text))
+text = list((input('Введите текст: ').lower()).split())
+text = ' '.join(list(map(int_func, text)))
+print(text)
