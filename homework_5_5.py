@@ -12,7 +12,7 @@ def my_gen(val: int):
 
 with open('task5.txt', 'w', encoding='UTF-8') as file:
     for var in my_gen(5):
-        print(var, end=' ', file=file)
+        file.write(f'{var} ')
 try:
     with open('task5.txt', 'r', encoding='UTF-8') as file:
         file = [int(num) for num in file.read().split()]
