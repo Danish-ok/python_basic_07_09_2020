@@ -9,4 +9,4 @@ with open('my_file.txt', 'w', encoding='UTF-8') as f:
         user_text = input('Введите текст: ')
         if not user_text:
             break
-        print(user_text, file=f)
+        f.writelines(user_text)
