@@ -10,3 +10,34 @@
 Пример json-объекта:
 [{"firm_1": 5000, "firm_2": 3000, "firm_3": 1000}, {"average_profit": 2000}]
 """
+
+
+def get_diff(param: list):
+    """
+    Вычисляет прибыль
+    :param param:
+    :return:
+    """
+    if param[2].isdigit() and param[3].isdigit():
+        diff = float(param[2]) - float(param[3])
+    else:
+        diff = False
+        print(param[0], 'Некорректные данные')
+    return diff
+
+
+comp_dict, su, count = {}, 0, 0
+try:
+    with open('task7.txt', 'r', encoding='UTF-8') as file:
+        for line in file:
+            var = line.split()  # [2:]
+            profit = get_diff(var)
+            if profit > 0:
+                count += 1
+                su += profit
+            comp_dict[var[0]] = profit
+    dict_prof = {'average_profit': su / count}
+    end_list = [comp_dict, dict_prof]
+    print(end_list)
+except (NameError, FileNotFoundError):
+    print('файл не существует')
