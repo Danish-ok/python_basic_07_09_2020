@@ -7,16 +7,25 @@
 """
 
 
-def get_sum(param):
-    for var in len(param.split('(')):
-        print(var)
+def get_sum(param: list):
+    """
+    Get sum in line
+    :param param:
+    :return: int
+    """
+    su = 0
+    for el in param:
+        itm = ''.join(filter(str.isdigit, el))
+        su += int(itm) if itm.isdigit() else 0
+    return su
 
 
-with open('task6.txt', 'r', encoding='UTF-8') as file:
-    # print(file.readline().split()[2].split('('))
-    for line in file:
-        # get_sum(line.split()[1:])
-        var = line.split()[1:]
-        if '-' in var:
-         var.remove('-')
-        print(var)
+try:
+    with open('task6.txt', 'r', encoding='UTF-8') as file:
+        new_dict = {}
+        for line in file:
+            var = line.split()[1:]
+            new_dict[line.split()[0]] = get_sum(var)
+    print(new_dict)
+except FileNotFoundError:
+    print('файл не существует')
