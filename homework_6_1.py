@@ -15,7 +15,8 @@ from itertools import cycle
 
 
 class TrafficLight:
-    __color = {'Красный': 7, 'Желтый': 3, 'Зеленый': 10}
+    def __init__(self):
+        self.__color = {'Красный': 7, 'Желтый': 3, 'Зеленый': 5}
 
     def running(self):
         rep = 0
@@ -27,5 +28,5 @@ class TrafficLight:
             rep += 1
 
 
-traf = TrafficLight()
-traf.running()
+traf_1 = TrafficLight()
+traf_1.running()
