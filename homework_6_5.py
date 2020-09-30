@@ -17,16 +17,25 @@ class Stationery:
 
 
 class Pen(Stationery):
+    def __init__(self, title):
+        super().__init__(title)
+
     def draw(self):
         print(self.title, 'пишет')
 
 
 class Pencil(Stationery):
+    def __init__(self, title):
+        super().__init__(title)
+
     def draw(self):
         print(self.title, 'рисует')
 
 
 class Handle(Stationery):
+    def __init__(self, title):
+        super().__init__(title)
+
     def draw(self):
         print(self.title, 'выделяет')
 
