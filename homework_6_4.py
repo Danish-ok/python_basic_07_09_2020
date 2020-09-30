@@ -14,11 +14,10 @@ speed, color, name, is_police (булево). А также методы: go, st
 
 
 class Car:
-    def __init__(self, speed, color, name, is_police):
+    def __init__(self, speed, color, name, is_police: bool = False):
         self.speed = speed
         self.color = color
-        self.name = name
-        self.is_police = is_police
+        self.name = name + ' (POLICE)' if is_police else name
 
     def go(self):
         return f'{self.name} поехала'
@@ -34,39 +33,43 @@ class Car:
 
 
 class TownCar(Car):
+    def __init__(self, speed, color, name):
+        super().__init__(speed, color, name, False)
+
     def show_speed(self):
         if self.speed > 60:
-            return "Вы превысили скорость!"
+            return f"Вы превысили скорость!, {super().show_speed()}"
         else:
-            return "Скорость разрешенная"
+            return f"{super().show_speed()} - Скорость разрешенная"
 
 
 class SportCar(Car):
-    def sport_car(self):
-        pass
+    def __init__(self, speed, color, name):
+        super().__init__(speed, color, name, False)
 
 
 class WorkCar(Car):
+    def __init__(self, speed, color, name):
+        super().__init__(speed, color, name, False)
+
     def show_speed(self):
         if self.speed > 40:
-            return "Вы превысили скорость!"
+            return f"Вы превысили скорость!, {super().show_speed()}"
         else:
-            return "Скорость разрешенная"
+            return f"{super().show_speed()} - Скорость разрешенная"
 
 
 class PoliceCar(Car):
-    def police_car(self):
-        if self.police_car():
-            return 'Это полицейская машина'
-        else:
-            return 'Это не полицейская машина'
+    def __init__(self, speed, color, name):
+        super().__init__(speed, color, name, True)
 
 
-mazda_car = TownCar(50, 'Металлик', 'Mazda', False)
-gaz_car = WorkCar(60, 'Белый', 'Газель', True)
-ferrari_car = SportCar(210, 'Красный', 'Ferrari', False)
-vaz_car = PoliceCar(100, 'Беж', 'ВАЗ-2114', True)
-print(f'Автомобиль {mazda_car.turn("налево")} со скоростью -  {mazda_car.show_speed()}')
+mazda_car = TownCar(50, 'Металлик', 'Mazda')
+gaz_car = WorkCar(60, 'Белый', 'Газель')
+ferrari_car = SportCar(210, 'Красный', 'Ferrari')
+vaz_car = PoliceCar(100, 'Беж', 'ВАЗ-2114')
+print(f'Автомобиль {mazda_car.turn("налево")}. {mazda_car.show_speed()}')
 print(gaz_car.show_speed())
 print(mazda_car.show_speed())
 print(ferrari_car.show_speed(), ferrari_car.name, ferrari_car.color)
+print(vaz_car.show_speed())
